@@ -29,12 +29,14 @@ CookUp is a subscription-based meal planning app that helps users find budget-fr
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/yourusername/cookup.git
 cd cookup
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 # or
@@ -42,11 +44,13 @@ yarn install
 ```
 
 3. Create a `.env.local` file in the root directory and add your environment variables:
+
 ```env
 NEXT_PUBLIC_API_URL=your_api_url
 ```
 
 4. Run the development server:
+
 ```bash
 npm run dev
 # or

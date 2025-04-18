@@ -1,56 +1,75 @@
-'use client'
+"use client";
 
-import { useSearchParams } from 'next/navigation'
-import Image from 'next/image'
-import Link from 'next/link'
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 
 // Mock data for demonstration
 const mockRecipes = [
   {
     id: 1,
-    title: 'Vegetable Stir Fry',
-    image: '/recipes/stir-fry.jpg',
-    budget: '$8.50',
+    title: "Vegetable Stir Fry",
+    image: "/recipes/stir-fry.jpg",
+    budget: "$8.50",
     servings: 4,
-    time: '25 mins',
-    ingredients: ['Rice', 'Mixed Vegetables', 'Soy Sauce', 'Garlic', 'Ginger'],
+    time: "25 mins",
+    ingredients: ["Rice", "Mixed Vegetables", "Soy Sauce", "Garlic", "Ginger"],
     alternatives: [
-      { name: 'Rice', original: '$2.50', alternative: 'Quinoa ($2.00)' },
-      { name: 'Mixed Vegetables', original: '$3.00', alternative: 'Frozen Vegetables ($2.50)' }
-    ]
+      { name: "Rice", original: "$2.50", alternative: "Quinoa ($2.00)" },
+      {
+        name: "Mixed Vegetables",
+        original: "$3.00",
+        alternative: "Frozen Vegetables ($2.50)",
+      },
+    ],
   },
   {
     id: 2,
-    title: 'Pasta Primavera',
-    image: '/recipes/pasta.jpg',
-    budget: '$7.25',
+    title: "Pasta Primavera",
+    image: "/recipes/pasta.jpg",
+    budget: "$7.25",
     servings: 4,
-    time: '30 mins',
-    ingredients: ['Pasta', 'Bell Peppers', 'Zucchini', 'Tomatoes', 'Parmesan'],
+    time: "30 mins",
+    ingredients: ["Pasta", "Bell Peppers", "Zucchini", "Tomatoes", "Parmesan"],
     alternatives: [
-      { name: 'Pasta', original: '$1.50', alternative: 'Whole Wheat Pasta ($1.75)' },
-      { name: 'Parmesan', original: '$2.00', alternative: 'Pecorino ($1.75)' }
-    ]
+      {
+        name: "Pasta",
+        original: "$1.50",
+        alternative: "Whole Wheat Pasta ($1.75)",
+      },
+      { name: "Parmesan", original: "$2.00", alternative: "Pecorino ($1.75)" },
+    ],
   },
   {
     id: 3,
-    title: 'Chicken Curry',
-    image: '/recipes/curry.jpg',
-    budget: '$9.75',
+    title: "Chicken Curry",
+    image: "/recipes/curry.jpg",
+    budget: "$9.75",
     servings: 4,
-    time: '45 mins',
-    ingredients: ['Chicken', 'Curry Paste', 'Coconut Milk', 'Rice', 'Vegetables'],
+    time: "45 mins",
+    ingredients: [
+      "Chicken",
+      "Curry Paste",
+      "Coconut Milk",
+      "Rice",
+      "Vegetables",
+    ],
     alternatives: [
-      { name: 'Chicken', original: '$4.00', alternative: 'Tofu ($2.50)' },
-      { name: 'Coconut Milk', original: '$2.00', alternative: 'Yogurt ($1.50)' }
-    ]
-  }
-]
+      { name: "Chicken", original: "$4.00", alternative: "Tofu ($2.50)" },
+      {
+        name: "Coconut Milk",
+        original: "$2.00",
+        alternative: "Yogurt ($1.50)",
+      },
+    ],
+  },
+];
 
-export default function SearchResults() {
-  const searchParams = useSearchParams()
-  const budget = searchParams.get('budget')
-  const servings = searchParams.get('servings')
+function SearchResultsContent() {
+  const searchParams = useSearchParams();
+  const budget = searchParams.get("budget");
+  const servings = searchParams.get("servings");
 
   return (
     <div className="min-h-screen py-12 px-4">
@@ -117,5 +136,38 @@ export default function SearchResults() {
         </div>
       </div>
     </div>
-  )
-} 
+  );
+}
+
+function LoadingState() {
+  return (
+    <div className="min-h-screen py-12 px-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex justify-between items-center mb-8">
+          <div className="h-8 w-64 bg-gray-200 rounded animate-pulse"></div>
+          <div className="h-6 w-24 bg-gray-200 rounded animate-pulse"></div>
+        </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="card">
+              <div className="h-48 mb-4 bg-gray-200 rounded-lg animate-pulse"></div>
+              <div className="h-6 w-3/4 bg-gray-200 rounded mb-4 animate-pulse"></div>
+              <div className="space-y-2">
+                <div className="h-4 w-1/2 bg-gray-200 rounded animate-pulse"></div>
+                <div className="h-4 w-3/4 bg-gray-200 rounded animate-pulse"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function SearchResults() {
+  return (
+    <Suspense fallback={<LoadingState />}>
+      <SearchResultsContent />
+    </Suspense>
+  );
+}

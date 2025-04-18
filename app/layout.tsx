@@ -7,20 +7,19 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "CookUp - AI-Powered Meal Planning",
-  description: "Budget-friendly meal planning with AI-powered recipe suggestions",
+  description:
+    "Budget-friendly meal planning with AI-powered recipe suggestions",
 };
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

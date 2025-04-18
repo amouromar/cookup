@@ -1,14 +1,14 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   const isActive = (path: string) => {
-    return pathname === path
-  }
+    return pathname === path;
+  };
 
   return (
     <nav className="bg-white dark:bg-gray-900 shadow-sm">
@@ -24,9 +24,9 @@ export default function Navbar() {
               <Link
                 href="/recipes"
                 className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                  isActive('/recipes')
-                    ? 'border-primary text-gray-900 dark:text-white'
-                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white'
+                  isActive("/recipes")
+                    ? "border-primary text-gray-900 dark:text-white"
+                    : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
                 }`}
               >
                 Find Recipes
@@ -34,9 +34,9 @@ export default function Navbar() {
               <Link
                 href="/pricing"
                 className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                  isActive('/pricing')
-                    ? 'border-primary text-gray-900 dark:text-white'
-                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white'
+                  isActive("/pricing")
+                    ? "border-primary text-gray-900 dark:text-white"
+                    : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white"
                 }`}
               >
                 Pricing
@@ -44,15 +44,12 @@ export default function Navbar() {
             </div>
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
-            <Link
-              href="/auth/login"
-              className="btn-primary"
-            >
+            <Link href="/auth/login" className="btn-primary">
               Start Free Trial
             </Link>
           </div>
         </div>
       </div>
     </nav>
-  )
-} 
+  );
+}

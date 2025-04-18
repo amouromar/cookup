@@ -129,13 +129,14 @@ export default function PricingPage() {
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
                   You get 3 free recipe views to try out the service. After
-                  that, you'll need to subscribe to continue accessing recipes.
+                  that, you&apos;ll need to subscribe to continue accessing
+                  recipes.
                 </p>
               </div>
               <div className="card">
                 <h3 className="font-semibold mb-2">Can I cancel anytime?</h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Yes, you can cancel your subscription at any time. You'll
+                  Yes, you can cancel your subscription at any time. You&apos;ll
                   continue to have access until the end of your billing period.
                 </p>
               </div>
